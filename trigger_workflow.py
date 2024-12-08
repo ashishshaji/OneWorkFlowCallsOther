@@ -21,8 +21,8 @@ headers = {
 payload = {
     "ref": "main",  # Replace 'main' with your branch
     "inputs": {
-        "key1": 1,
-        "key2": 2
+        "key1": "1",
+        "key2": "2"
     }
 }
 
