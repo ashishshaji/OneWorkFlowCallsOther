@@ -5,7 +5,7 @@ import json
 # Define your variables
 repo_owner = "ashishshaji"
 repo_name = "OneWorkFlowCallsOther"
-workflow_id = "second-workflow.yml"  # or the workflow ID
+workflow_id = "second_workflow.yml"  # or the workflow ID
 github_token = os.getenv("GH_TOKEN")
 
 # GitHub API endpoint for triggering a workflow
