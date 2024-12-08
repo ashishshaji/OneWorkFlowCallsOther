@@ -1,0 +1,24 @@
+name: Second Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      key1:
+        description: "Key 1"
+        required: true
+      key2:
+        description: "Key 2"
+        required: true
+
+jobs:
+  handle-dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Handle Dispatch Event
+        run: |
+          key1="${{ github.event.inputs.key1 }}"
+          key2="${{ github.event.inputs.key2 }}"
+          echo "Received dispatch with key1: $key1 and key2: $key2"

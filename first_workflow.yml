@@ -1,0 +1,25 @@
+name: First Workflow
+
+on:
+  push:
+    branches:
+      -main
+
+jobs:
+  call-python-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install requests library
+        run: pip install requests
+
+      - name: Run Python script to trigger second workflow
+        env: GITHUB_TOKEN: ${{ secrets.GH_TOKEN}}
+        run: python trigger_workflow.py
