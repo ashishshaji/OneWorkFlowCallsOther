@@ -15,7 +15,7 @@ jobs:
         id: generate-matrix
         run: |
           # Replace this with your logic to generate the list dynamically
-          PARAMS=$(jq -n '[ "tk1", "tk2", "tk3", "tk4", "tk5" ]')
+          PARAMS=$(jq -n '[ {"param": "tk1"}, {"param": "tk2"}, {"param": "tk3"}, {"param": "tk4"}, {"param": "tk5"} ]')
           echo "::set-output name=matrix::$PARAMS"
 
   call-workflows:
