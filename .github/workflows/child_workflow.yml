@@ -1,0 +1,19 @@
+name: Child Workflow
+
+on:
+  workflow_call:
+    inputs:
+      param:
+        required: true
+        type: string
+
+jobs:
+  run-child-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Process parameter
+        run: |
+          echo "Processing parameter: ${{ inputs.param }}"

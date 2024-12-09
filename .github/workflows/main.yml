@@ -1,0 +1,34 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-parameters:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+    steps:
+      - name: Generate matrix
+        id: generate-matrix
+        run: |
+          # Replace this with your logic to generate the list dynamically
+          PARAMS=$(jq -n '[ "tk1", "tk2", "tk3", "tk4", "tk5" ]')
+          echo "::set-output name=matrix::$PARAMS"
+
+  call-workflows:
+    needs: generate-parameters
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        params: ${{ fromJson(needs.generate-parameters.outputs.matrix) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Call child workflow
+        uses: ./.github/workflows/child_workflow.yml
+        with:
+          param: ${{ matrix.params }}
